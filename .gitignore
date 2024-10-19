@@ -1,6 +1,3 @@
 node_modules
-<<<<<<< Updated upstream
-=======
 .venv/
 serviceAccountKey.json
->>>>>>> Stashed changes

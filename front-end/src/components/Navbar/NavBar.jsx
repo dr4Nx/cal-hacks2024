@@ -25,7 +25,7 @@ const JoinButton= ({link,pagename})=>{
 const Navbar =({loggedIn}) =>{
     return(
         <div className = "sticky top-0 bg-sage overflow-hidden">
-            <Block link="/login" pagename="Login"/>
+            {loggedIn ? <Block link="/logout" pagename="Logout"/> : <Block link="/login" pagename="Join Us!"/>}
             <Block link="/ask" pagename="Ask"/>
             <Block link="/provide" pagename="Provide"/>
             {loggedIn ? <p>Logged In!</p> : <p>Not Logged In!</p>}

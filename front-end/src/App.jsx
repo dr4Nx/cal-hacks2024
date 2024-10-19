@@ -6,6 +6,7 @@ import{
 } from "react-router-dom";
 import Home from "./pages/index.jsx"
 import Login from "./pages/login.jsx"
+import LogOut from "./pages/logout.jsx"
 import Ask from "./pages/ask.jsx"
 import Provide from "./pages/provide.jsx"
 // Import the functions you need from the SDKs you need
@@ -34,7 +35,7 @@ export default function App() {
     measurementId: `${import.meta.env.VITE_MEASUREMENT_ID}`
   };
 
-  const app = initializeApp(firebaseConfig);
+  initializeApp(firebaseConfig);
 
 
   const [loggedIn, setLoggedIn] = useState(false);
@@ -42,7 +43,7 @@ export default function App() {
 
 
   useEffect(() => {
-    const auth = getAuth(app);
+    const auth = getAuth();
     const storedCredential = localStorage.getItem('firebaseCredential');
     
     if (storedCredential) {
@@ -65,7 +66,7 @@ export default function App() {
         setLoggedIn(false);
       }
     });
-  }, [app]);
+  }, []);
 
 
   
@@ -77,7 +78,8 @@ export default function App() {
         <Route path="/" element={<Home />}/>
         <Route path="/ask" element={<Ask />}/>
         <Route path="/provide" element={<Provide />}/>
-        <Route path="/login" element={<Login app={app} setUserCredential={setUserCredential} setLoggedIn={setLoggedIn} />}/>
+        <Route path="/login" element={<Login setUserCredential={setUserCredential} loggedIn={loggedIn} setLoggedIn={setLoggedIn} />}/>
+        <Route path="/logout" element={<LogOut setLoggedIn={setLoggedIn} />}/>
       </Routes>
       <ToastContainer />
 

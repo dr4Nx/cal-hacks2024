@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
 import { getFirestore, doc, getDoc } from 'firebase/firestore';
+import { useParams } from 'react-router-dom' 
 
-const Request = ({ requestId }) => {
+const Request = () => {
+  const requestId = useParams().id; 
   const [request, setRequest] = useState(null); // State to store the request data
   const [loading, setLoading] = useState(true); // State for loading state
   const [error, setError] = useState(null); // State for error handling
@@ -36,10 +38,10 @@ const Request = ({ requestId }) => {
       {request ? (
         <div className="request-details">
           <h2>Request ID: {requestId}</h2>
-          <p><strong>Title:</strong> {request.title}</p>
+          <p><strong>Title:</strong> {request.topic}</p>
           <p><strong>Description:</strong> {request.description}</p>
-          <p><strong>Posted by:</strong> {request.postedBy}</p>
-          <p><strong>Created at:</strong> {new Date(request.createdAt.toDate()).toLocaleString()}</p>
+          <p><strong>Posted by:</strong> {request.student_id}</p>
+          <p><strong>Created at:</strong> {request.date_created.toDate().toString()}</p>
         </div>
       ) : (
         <div>No request data available</div>

@@ -25,9 +25,11 @@ const JoinButton= ({link,pagename})=>{
 const Navbar =() =>{
     return(
         <div className = "sticky top-0 bg-sage overflow-hidden">
-          
-            <Block link="/about" pagename="About"/>
+            <Block link="/register" pagename="Register"/>
             <Block link="/login" pagename="Login"/>
+            <Block link="/ask" pagename="Ask"/>
+            <Block link="/provide" pagename="Provide"/>
+            
             
         </div>
     );

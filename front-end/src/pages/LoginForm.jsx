@@ -36,18 +36,20 @@ const LoginForm = ({ setLoading }) => {
   };
   return (
     <>
-      <h1 className="font-bold">Login Page</h1>
-      <p>Welcome back! Please login to continue.</p>
+    <div className ="text-center">
+      <h1 className="font-bold font-poppins text-[32px]">Login</h1>
+      <p className ="font-figtree mt-1 mb-4">Welcome back! Please login to continue.</p>
+      <div className ="font-figtree">
       <form onSubmit={submitLogin}>
         <input
-          className="shadow appearance-none border rounded w-full py-2 px-3 my-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          className="shadow appearance-none rounded w-full py-2 px-3 my-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
         <br />
         <input
-          className="shadow appearance-none border rounded w-full py-2 px-3 my-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          className="shadow appearance-none rounded w-full py-2 px-3 my-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           placeholder="Password"
           type="password"
           value={password}
@@ -59,6 +61,8 @@ const LoginForm = ({ setLoading }) => {
           value="submit"
         />
       </form>
+      </div>
+      </div>
     </>
   );
 };

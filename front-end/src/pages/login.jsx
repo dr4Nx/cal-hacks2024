@@ -76,27 +76,31 @@ const Login = () => {
 
   return (
     <>
-
-      <div className="flex justify-center mb-4">
+    <div className ="mt-[150px]">
+    <h1 className ="text-center m-20 font-poppins font-bold text-[48px]">It's great to see you!</h1>
+      <div className="justify-center mx-auto mb-4 w-5/12">
+        
         <button
-          className={`px-4 py-2 mr-2 ${
-            isLogin ? "bg-blue-500 text-white" : "bg-gray-200"
+          className={`px-4 py-2 rounded-t-lg shadow-l-md font-figtree ml-10 float-left h-[50px] ${
+            isLogin ? "bg-lightsage" : "bg-darksage  text-white"
           }`}
           onClick={() => setIsLogin(true)}
         >
           Login
         </button>
         <button
-          className={`px-4 py-2 ${
-            !isLogin ? "bg-blue-500 text-white" : "bg-gray-200"
+          className={`px-4 py-2  rounded-t-lg shadow-l-md font-figtree h-[50px] ${
+            !isLogin ? "bg-lightsage" : "bg-darksage text-white"
           }`}
           onClick={() => setIsLogin(false)}
         >
           Register
         </button>
-      </div>
-      <div className="bg-white rounded shadow p-10 m-10 text-center">
+     
+        <div className="bg-lightsage rounded-b-lg rounded-tr-lg shadow-lg p-10 mx-10 my-text-center">
         {isLogin ? <LoginForm setLoading={setLoading} /> : <RegisterForm setLoading={setLoading} />}
+      </div>
+      </div>
       </div>
     </>
   );

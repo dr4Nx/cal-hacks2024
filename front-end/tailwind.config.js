@@ -5,7 +5,14 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        customFont: ['"Custom Font"', "sans-serif"],
+        // Add more custom font families as needed
+        poppins: ["Poppins", "sans-serif"],
+        figtree: ["Figtree","sans-serif"],
+      },
+    },
     colors: {
       transparent: 'transparent',
       current: 'currentColor',

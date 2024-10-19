@@ -35,7 +35,7 @@ const Home = ({link}) =>{
         </>
     );
 }
-const Navbar =() =>{
+const Navbar =({loggedIn}) =>{
     return(
         <div className = "top-0 fixed w-full bg-sage opacity-90 drop-shadow-md overflow-hidden z-10">
             <Home link = "/" />

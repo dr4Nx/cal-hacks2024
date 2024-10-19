@@ -6,7 +6,7 @@ import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { toast } from "react-toastify";
 
 
-const RegisterForm = () => {
+const RegisterForm = ({setLoading}) => {
   const auth = getAuth();
   const navigate = useNavigate();
 
@@ -18,6 +18,7 @@ const RegisterForm = () => {
   const db = getFirestore();
   const submitLogin = async (e) => {
     e.preventDefault();
+    setLoading(true);
     const userCredential = await createUserWithEmailAndPassword(
       auth,
       email,
@@ -32,8 +33,8 @@ const RegisterForm = () => {
       expertisetopics: []
     };
     const currdoc = doc(db, "users", userId);
-    toast.success("Login successful");
     await setDoc(currdoc, user);
+    setLoading(false);
     navigate("/");
   };
 

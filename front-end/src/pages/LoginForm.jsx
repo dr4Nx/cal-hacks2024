@@ -3,11 +3,15 @@ import {
   getAuth,
   signInWithEmailAndPassword,
 } from "firebase/auth";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom"
 
-const LoginForm = ({ }) => {
+const LoginForm = ({ setLoading }) => {
   const auth = getAuth();
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
+  const [error, setError] = React.useState("");
+  const navigate = useNavigate();
 
   const submitLogin = async (e) => {
     
@@ -16,14 +20,13 @@ const LoginForm = ({ }) => {
     setError("");
     try {
       // Sign in
+      setLoading(true);
       const userCredential = await signInWithEmailAndPassword(
         auth,
         email,
         password
       );
-      toast.success("Login successful");
-      setUserCredential(userCredential);
-      setLoggedIn(true);
+      setLoading(false);
       navigate("/");
     } catch (err) {
       setError(err.message);

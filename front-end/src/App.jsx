@@ -40,7 +40,7 @@ export default function App() {
 
   const [loggedIn, setLoggedIn] = useState(false);
   const [userCredential, setUserCredential] = useState(null);
-
+  
 
   useEffect(() => {
     const auth = getAuth();
@@ -78,7 +78,7 @@ export default function App() {
         <Route path="/" element={<Home />}/>
         <Route path="/ask" element={<Ask />}/>
         <Route path="/provide" element={<Provide />}/>
-        <Route path="/login" element={<Login setUserCredential={setUserCredential} loggedIn={loggedIn} setLoggedIn={setLoggedIn} />}/>
+        <Route path="/login" element={<Login />}/>
         <Route path="/logout" element={<LogOut setLoggedIn={setLoggedIn} />}/>
       </Routes>
       <ToastContainer />

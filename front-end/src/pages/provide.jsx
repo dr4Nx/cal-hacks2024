@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState } from "react"; //FIX POSTS
 const Post = ({subject, topic}) =>{
     return(
         <>

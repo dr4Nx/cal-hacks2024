@@ -45,10 +45,8 @@ export default function App() {
         <Route path="/login" element={<Login app={app} />}/>
         <Route path='/profile' element={<Profile />}/>
       </Routes>
-
     </Router>
-    
-    
+      
     </>
   )
 }

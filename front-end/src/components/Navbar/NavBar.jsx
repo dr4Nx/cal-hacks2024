@@ -39,12 +39,10 @@ const Navbar =() =>{
     return(
         <div className = "top-0 fixed w-full bg-sage opacity-90 drop-shadow-md overflow-hidden z-10">
             <Home link = "/" />
-            <JoinButton link="/register" pagename="Register"/>
-            <Block link="/login" pagename="Login"/>
+            {loggedIn ? <JoinButton link="/logout" pagename="Logout"/> : <JoinButton link="/login" pagename="Join Us!"/>}
             <Block link="/profile" pagename="Profile"/>
             <Block link="/ask" pagename="Ask"/>
             <Block link="/provide" pagename="Provide"/>
-            
         </div>
     );
 }

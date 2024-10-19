@@ -38,7 +38,7 @@ export default function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />}/>
-        <Route path="/register" element={<Register />}/>
+        <Route path="/register" element={<Register app={app}/>}/>
         <Route path="/ask" element={<Ask />}/>
         <Route path="/provide" element={<Provide />}/>
         <Route path="/login" element={<Login app={app} />}/>

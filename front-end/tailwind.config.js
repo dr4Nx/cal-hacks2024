@@ -23,7 +23,7 @@ export default {
       },
       'sage': '#607A67',
       'darksage': '#4D6252',
-      'lightsage': '#C0E3C9',
+      'lightsage': '#d1ded4',
     
     },
   },

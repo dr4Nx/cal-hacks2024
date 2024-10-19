@@ -59,6 +59,18 @@ const Ask = () => {
             value={subject}
             onChange={(e) => setSubject(e.target.value)}
           />
+          <select 
+            className = "shadow border-none appearance-none border rounded w-full py-2 px-3 my-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
+            name="Days Dropdown" 
+            id="Days_Dropdown" 
+            multiple 
+            size="5">
+            <option value="Monday">Monday</option>
+            <option value="Tuesday">Tuesday</option>
+            <option value="Wednesday">Wednesday</option>
+            <option value="Thursday">Thursday</option>
+            <option value="Friday">Friday</option>
+        </select>
           <textarea
             className="shadow border-none appearance-none border rounded w-full py-2 px-3 my-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             placeholder="Specific topic (the more specific you are, the better we can match you!)"

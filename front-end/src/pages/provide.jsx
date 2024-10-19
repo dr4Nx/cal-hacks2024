@@ -6,12 +6,13 @@ const Provide = () => {
         { subject: 'English', topic: 'I need someone to help me understand hamlet',id: 2, relevance:3 },
         { subject: 'Physics', topic: 'I do not understand the calculus behind kinematics',id: 3, relevance:1},
     ];
-    function handleSort(){
-
-    }
+    
     function organizeposts(){
         setPosts(examplePost);
-
+        //const sortedPosts = [...posts].sort((a,b)=> {
+       //     return a.first > b.first ? 1:-1
+       // })
+       // setPosts(sortedPosts);
     }
     return(
         <div>

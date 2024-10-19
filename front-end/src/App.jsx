@@ -9,6 +9,7 @@ import Login from "./pages/login.jsx"
 import Register from "./pages/register.jsx"
 import Ask from "./pages/ask.jsx"
 import Provide from "./pages/provide.jsx"
+import Profile from "./pages/profile.jsx"
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";// TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -38,12 +39,11 @@ export default function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />}/>
-        <Route path="/login" element={<Login />}/>
         <Route path="/register" element={<Register />}/>
         <Route path="/ask" element={<Ask />}/>
         <Route path="/provide" element={<Provide />}/>
-        <Route path="/about" element={<About />}/>
         <Route path="/login" element={<Login app={app} />}/>
+        <Route path='/profile' element={<Profile />}/>
       </Routes>
 
     </Router>

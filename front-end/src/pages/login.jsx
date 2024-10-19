@@ -30,21 +30,21 @@ const Login = ({app}) => {
 
   return (
     <>
-      <div className="bg-white rounded shadow p-10 m-10 text-center">
+      <div className="bg-lightsage rounded shadow p-10 m-10 text-center">
         <h1 className="font-bold">Login Page</h1>
         <p>
           Welcome back! Please login to continue. Your email is your username
         </p>
         <form onSubmit={submitLogin}>
           <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 my-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className="shadow appearance-none rounded w-full py-2 px-3 my-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             placeholder="Username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
           <br />
           <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 my-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className="shadow appearance-none rounded w-full py-2 px-3 my-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             placeholder="Password"
             type="password"
             value={password}

@@ -1,39 +1,8 @@
-import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth";
-import { useState } from "react";
+import React from 'react'
 
-
-const Register = ({ app }) => {
-
-
-
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-  const isLogin = false;
-  
-  const auth = getAuth(app);
-
-  const submitLogin = async (e) => {
-    e.preventDefault();
-    setError("");
-    try {
-      if (isLogin) {
-        // Sign in
-        await signInWithEmailAndPassword(auth, email, password);
-      } else {
-        // Sign up
-        await createUserWithEmailAndPassword(auth, email, password);
-      }
-    } catch (err) {
-      setError(err.message);
-      console.log(err.message);
-    }
-
-    console.log("Submitted login");
-  };
-    
-    return (
-        <>
+const RegisterForm = ({submitLogin, email, password, setEmail, setPassword}) => {
+  return (
+    <>
         <h1 className="font-bold text-2xl text-center my-10">Unlock your academic potential</h1>
         <div className="bg-lightsage rounded shadow p-10 m-10 text-center">
             <h3 className ="font-bold">Enter your information</h3>
@@ -68,7 +37,7 @@ const Register = ({ app }) => {
             </form>
         </div>
         </>
-    );
-};
+  )
+}
 
-export default Register;
+export default RegisterForm;

@@ -77,7 +77,7 @@ export default function App() {
     <Router>
       <Navbar loggedIn={loggedIn} />
       <Routes>
-        <Route path="/" element={<Home />}/>
+        <Route path="/" element={<Home loggedIn={loggedIn} />}/>
         <Route path='/profile' element={<Profile />}/>
         <Route path="/ask" element={<Ask />}/>
         <Route path="/provide" element={<Provide />}/>

@@ -1,8 +1,23 @@
 import { useState, useEffect } from 'react';
 import { getFirestore, doc, getDoc } from 'firebase/firestore';
-import { useParams } from 'react-router-dom' 
+import { useParams, useNavigate } from 'react-router-dom' 
+import { getAuth } from 'firebase/auth'
+import { toast } from 'react-toastify'
 
 const Request = () => {
+  const auth = getAuth();
+  const navigate = useNavigate();
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (!user) {
+        navigate("/");
+        toast.error("Not Logged In!")
+      }
+    });
+
+    return () => unsubscribe();
+  }, [auth, navigate]);
+
   const requestId = useParams().id; 
   const [request, setRequest] = useState(null); // State to store the request data
   const [loading, setLoading] = useState(true); // State for loading state

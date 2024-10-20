@@ -1,6 +1,5 @@
-import React, { useState } from "react";
-
-import { collection, addDoc, serverTimestamp, getFirestore } from "firebase/firestore";
+import React, { useState, useEffect } from "react";
+import { collection, addDoc, serverTimestamp, getFirestore} from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 import { useNavigate } from "react-router-dom"
 import { toast } from "react-toastify"
@@ -10,6 +9,20 @@ const Ask = () => {
   const [specificTopic, setSpecificTopic] = useState("");
   const navigate = useNavigate();
   const db = getFirestore();
+
+
+  useEffect(() => {
+    const auth = getAuth();
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (!user) {
+        navigate("/login");
+        toast.error("You are not Logged In!");
+      }
+    });
+
+    return () => unsubscribe();
+  }, [navigate]);
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -44,6 +57,7 @@ const Ask = () => {
     } else {
       navigate("/login");
       toast.error("you are not logged in")
+
     }
 
 

@@ -5,6 +5,7 @@ import { getAuth } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useEffect } from "react";
+import Spinner from "../components/Spinner.jsx";
 
 const Login = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -71,7 +72,7 @@ const Login = () => {
   }, [auth, navigate]);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <Spinner loading={loading} />;
   }
 
   return (

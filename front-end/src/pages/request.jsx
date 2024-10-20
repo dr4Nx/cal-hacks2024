@@ -1,69 +1,145 @@
 import { useState, useEffect } from 'react';
-import { getFirestore, doc, getDoc } from 'firebase/firestore';
-import { useParams, useNavigate } from 'react-router-dom' 
-import { getAuth } from 'firebase/auth'
-import { toast } from 'react-toastify'
-import Spinner from '../components/Spinner'
+import { getFirestore, doc, getDoc, updateDoc } from 'firebase/firestore';
+import { useParams, useNavigate } from 'react-router-dom';
+import { getAuth } from 'firebase/auth';
+import { toast } from 'react-toastify';
+import Spinner from '../components/Spinner';
 
 const Request = () => {
   const auth = getAuth();
   const navigate = useNavigate();
+  const user = auth.currentUser;
+
+  const requestId = useParams().id;
+  const [request, setRequest] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const db = getFirestore();
+
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (!user) {
-        navigate("/");
-        toast.error("Not Logged In!")
+        navigate('/');
+        toast.error('Not Logged In!');
       }
     });
 
     return () => unsubscribe();
   }, [auth, navigate]);
 
-  const requestId = useParams().id; 
-  const [request, setRequest] = useState(null); // State to store the request data
-  const [loading, setLoading] = useState(true); // State for loading state
-  const [error, setError] = useState(null); // State for error handling
-  const db = getFirestore();
-
   useEffect(() => {
     const fetchRequest = async () => {
       try {
-        const docRef = doc(db, 'requests', requestId); // Reference to the specific request document
-        const docSnap = await getDoc(docRef); // Get the document from Firestore
+        const docRef = doc(db, 'requests', requestId);
+        const docSnap = await getDoc(docRef);
 
         if (docSnap.exists()) {
-          setRequest(docSnap.data()); // If request exists, set it to state
+          setRequest(docSnap.data());
         } else {
-          setError('Request not found'); // If no such document, set an error message
+          setError('Request not found');
         }
       } catch (err) {
-        setError('Failed to fetch request'); // Handle any errors
+        setError('Failed to fetch request');
       } finally {
-        setLoading(false); // Always set loading to false when the data is fetched or error occurs
+        setLoading(false);
       }
     };
 
     fetchRequest();
-  }, [db, requestId]); // Fetch the request whenever the requestId changes
+  }, [db, requestId]);
+
+  const handleBecomeTutor = async () => {
+    if (user) {
+      try {
+        const docRef = doc(db, 'users', user.uid);
+        const docSnap = await getDoc(docRef);
+        let username;
+        if (docSnap.exists()) {
+          username = docSnap.data().username;
+        } else {
+          setError('Request not found');
+        }
+
+        const requestDocRef = doc(db, 'requests', requestId);
+        await updateDoc(requestDocRef, {
+          tutor_id: user.uid,
+          tutor_username: username,
+        });
+        toast.success('You are now the tutor for this request!');
+        setRequest((prevRequest) => ({
+          ...prevRequest,
+          tutor_id: user.uid,
+          tutor_username: username,
+        }));
+      } catch (err) {
+        console.log(err);
+        toast.error('Failed to assign yourself as a tutor');
+      }
+    } else {
+      toast.error('You need to be logged in to become a tutor');
+    }
+  };
 
   if (loading) return <Spinner loading={loading} />;
   if (error) return <div>{error}</div>;
 
   return (
-    <div className="request-container mt-[125px] ml-[10%]">
-      {request ? (
-        <div className="request-details">
-          <h2 className="font-figtree">Request ID: {requestId}</h2>
-          <p className ="font-poppins text-[48px]"><strong>Subject:</strong> {request.topic}</p>
-          <div className ="font-figtree">
-          <p><strong>From:</strong> {request.student_id}</p>
-          <p><strong>Date posted:</strong> {request.date_created.toDate().toString()}</p>
-          <p className = "mt-10"><strong>Description:</strong> {request.description}</p>
+
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
+      <div className="bg-gray-200 p-8 rounded-md shadow-md w-full max-w-md">
+        <h1 className="text-2xl font-bold text-center mb-6">Request</h1>
+        {request ? (
+          <div className="space-y-4">
+            <div>
+              <label className="block font-semibold">Title:</label>
+              <input
+                type="text"
+                value={request.topic}
+                className="w-full p-2 bg-gray-100 rounded-md focus:outline-none"
+                disabled
+              />
+            </div>
+            <div>
+              <label className="block font-semibold">Description:</label>
+              <textarea
+                value={request.description}
+                className="w-full p-2 bg-gray-100 rounded-md h-24 focus:outline-none"
+                disabled
+              />
+            </div>
+            <div>
+              <p className="font-semibold">Posted by: {request.student_username}</p>
+            </div>
+            <div>
+              <p className="font-semibold">
+                Status: {request.complete ? 'Complete' : 'Incomplete'}
+              </p>
+            </div>
+            <div>
+              <p className="font-semibold">
+                Created at: {request.date_created.toDate().toString()}
+              </p>
+            </div>
+            {request.tutor_id ? (
+              <p className="font-semibold">
+                Tutor: {request.tutor_username || 'unassigned'}
+              </p>
+            ) : (
+              user &&
+              user.uid !== request.student_id && (
+                <input
+                  type="button"
+                  onClick={() => {handleBecomeTutor()}}
+                  className="w-full p-2 bg-sage text-white rounded-md hover:bg-lightsage"
+                  value="Become Tutor"
+                />
+              )
+            )}
           </div>
-        </div>
-      ) : (
-        <div>No request data available</div>
-      )}
+        ) : (
+          <div>No request data available</div>
+        )}
+      </div>
     </div>
   );
 };

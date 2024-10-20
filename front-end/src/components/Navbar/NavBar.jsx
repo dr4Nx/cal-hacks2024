@@ -39,7 +39,6 @@ const Home = ({link}) =>{
 }
 const Navbar =({loggedIn}) =>{
     return(
-        
         <div className = "top-0 fixed w-full bg-sage opacity-100 drop-shadow-md overflow-hidden z-10">
             <Home link = "/" />
             {loggedIn ? <JoinButton link="/logout" pagename="Logout"/> : <JoinButton link="/login" pagename="Join Us!"/>}

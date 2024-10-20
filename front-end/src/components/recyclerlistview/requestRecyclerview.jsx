@@ -12,7 +12,9 @@ const RequestRecyclerView = () => {
     const fetchRequests = async () => {
       try {
         const querySnapshot = await getDocs(collection(db, 'requests'));
-        const requestsData = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        const requestsData = querySnapshot.docs
+        .map(doc => ({ id: doc.id, ...doc.data() }))
+        .filter(request => request.tutor_id === null);
         setRequests(requestsData);
       } catch (error) {
         console.error("Error fetching requests: ", error);
@@ -26,9 +28,9 @@ const RequestRecyclerView = () => {
   const sortRequests = (requests) => {
     switch (sortOption) {
       case 'earliest':
-        return requests.sort((a, b) => a.date_created.toDate() - b.date_created.toDate());
+        return requests.sort((a, b) => a.date_created - b.date_created);
       case 'latest':
-        return requests.sort((a, b) => b.date_created.toDate() - a.date_created.toDate());
+        return requests.sort((a, b) => b.date_created - a.date_created);
       case 'alphabetical':
         return requests.sort((a, b) => a.topic.localeCompare(b.topic));
       case 'reverseAlphabetical':
@@ -65,7 +67,7 @@ const RequestRecyclerView = () => {
               id={request.id}
               topic={request.topic}
               description={request.description}
-              studentId={request.student_id}
+              studentUsername={request.student_username}
               tutorId={request.tutor_id}
               complete={request.complete}
               dateCreated={request.date_created}

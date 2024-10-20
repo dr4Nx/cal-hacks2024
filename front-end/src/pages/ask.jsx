@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from "react";
-import { collection, addDoc, serverTimestamp, getFirestore} from "firebase/firestore";
+import { collection, addDoc, serverTimestamp, getFirestore , doc, getDoc} from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 import { useNavigate } from "react-router-dom"
 import { toast } from "react-toastify"
 import "@animxyz/core";
 import { XyzTransition } from "@animxyz/react";
+import Spinner from "../components/Spinner";
 
 const Ask = () => {
   const [subject, setSubject] = useState("");
   const [specificTopic, setSpecificTopic] = useState("");
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const db = getFirestore();
 
@@ -31,27 +34,47 @@ const Ask = () => {
 
     const auth = getAuth();
     const user = auth.currentUser;
-
+    
     if (user) {
       const studentId = user.uid;
+
+      try {
+        const docRef = doc(db, 'users', studentId); // Reference to the specific request document
+        const docSnap = await getDoc(docRef); // Get the document from Firestore
+
+        if (docSnap.exists()) {
+          const studentUsername = docSnap.data().username; // If request exists, set it to state
+          setLoading(true);
+          await addDoc(collection(db, "requests"), {
+            topic: subject,
+            description: specificTopic,
+            complete: false,
+            date_created: serverTimestamp(),
+            student_id: studentId,
+            student_username: studentUsername,
+            tutor_id: null,
+            tutor_username: null
+          });
+          setLoading(false);
+  
+          // Reset form fields after submission
+          setSubject("");
+          setSpecificTopic("");
+  
+          // Optionally, show a success message or redirect
+          toast.success("Request submitted successfully!");
+        } else {
+          setError('Request not found'); // If no such document, set an error message
+        }
+      } catch (err) {
+        console.log(err)
+        setError('Failed to fetch request'); // Handle any errors
+      }
+
       try {
         // Add a new document to the 'requests' collection in Firestore
 
-        await addDoc(collection(db, "requests"), {
-          topic: subject,
-          description: specificTopic,
-          complete: false,
-          date_created: serverTimestamp(),
-          student_id: studentId,
-          tutor_id: null
-        });
-
-        // Reset form fields after submission
-        setSubject("");
-        setSpecificTopic("");
-
-        // Optionally, show a success message or redirect
-        alert("Request submitted successfully!");
+        
 
       } catch (error) {
         console.error("Error adding document: ", error);
@@ -59,11 +82,12 @@ const Ask = () => {
     } else {
       navigate("/login");
       toast.error("you are not logged in")
-
     }
 
-
+    if (error) return <div>{error}</div>;
   };
+
+  if (loading) return <Spinner />;
 
   return (
     <XyzTransition appear xyz="fade down duration-10">
@@ -78,17 +102,6 @@ const Ask = () => {
             value={subject}
             onChange={(e) => setSubject(e.target.value)}
           />
-          <select
-            className="block shadow border-none appearance-none border rounded w-full py-2 px-3 my-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder ="Choose a day"
-            > {/*figure out way to default this textbox to be choose a day */}
-            <option value="Sunday">Sunday</option>
-            <option value="Monday">Monday</option>
-            <option value="Tuesday">Tuesday</option>
-            <option value="Wednesday">Wednesday</option>
-            <option value="Thursday">Thursday</option>
-            <option value="Friday">Friday</option>
-            <option value="Saturday">Saturday</option>
-          </select>
           <textarea
             className="block shadow border-none resize-none appearance-none border rounded w-full py-2 px-3 my-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             placeholder="Specific topic (the more specific you are, the better we can match you!)"
@@ -97,7 +110,7 @@ const Ask = () => {
           />
           <input
             type="submit"
-            className="bg-sage hover:bg-lightsage rounded my-3 p-2 text-white"
+            className="bg-sage hover:bg-darksage rounded my-3 p-2 text-white"
             value="Submit"
           />
         </form>

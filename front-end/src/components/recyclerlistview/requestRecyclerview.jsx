@@ -120,7 +120,7 @@ const RequestRecyclerView = () => {
           <select
             id="sort"
             value={sortOption}
-            className=" border-darksage border-2 rounded-md p-2"
+            className="border-darksage border-2 rounded-md p-2"
             onChange={(e) => setSortOption(e.target.value)}
           >
             <option value="earliest">Earliest to Latest</option>

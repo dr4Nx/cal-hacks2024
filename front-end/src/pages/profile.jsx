@@ -26,7 +26,7 @@ const Tabs = ({ text, setPage, page }) => {
         <>
             <input
                 type="button"
-                className="text-center bg-opacity-20 hover:bg-lightsage text-white font-figtree w-full py-3"
+                className="transition ease-in-out delay-150 text-center bg-opacity-20 hover:bg-lightsage hover:text-darksage text-white font-figtree w-full py-3"
                 value={text}
                 onClick={() => {
                     setPage(page);
@@ -217,7 +217,7 @@ const TabProfile = ({ userId, userInfo, setUserInfo, requests, setLoading }) => 
                                 <h3 className="font-poppins font-bold text-[30px] my-4">Stats</h3>
                                 <div className = "flex justify-between items-center font-figtree mt-6 mb-2">
                                 <p>
-                                    Number requested
+                                    Number Requested
                                 </p>
                                 <p className ="text-sage">
                                 {" "}
@@ -229,12 +229,36 @@ const TabProfile = ({ userId, userInfo, setUserInfo, requests, setLoading }) => 
                                 </div>
                                 <div className = "flex justify-between items-center font-figtree my-2">
                                 <p>
-                                    Number claimed
+                                    Number Claimed
                                 </p>
                                 <p className ="text-sage">
                                 {" "}
                                     {
                                         requests.filter((request) => request.tutor_id === userId)
+                                            .length
+                                    } 
+                                </p>
+                                </div>
+                                <div className = "flex justify-between items-center font-figtree my-2">
+                                <p>
+                                    Number Completed (Student)
+                                </p>
+                                <p className ="text-sage">
+                                {" "}
+                                    {
+                                        requests.filter((request) => request.student_id === userId && request.complete)
+                                            .length
+                                    } 
+                                </p>
+                                </div>
+                                <div className = "flex justify-between items-center font-figtree my-2">
+                                <p>
+                                    Number Completed (Tutor)
+                                </p>
+                                <p className ="text-sage">
+                                {" "}
+                                    {
+                                        requests.filter((request) => request.tutor_id === userId && request.complete)
                                             .length
                                     } 
                                 </p>
@@ -255,7 +279,7 @@ const TabRequests = ({ userId, requests }) => {
             <div className="ml-[25%] mt-[125px]">
                 <h2 className="text-center font-poppins font-bold text-[48px] mb-[20px]">Requests</h2>
                 {requests
-                    .filter((request) => request.student_id === userId)
+                    .filter((request) => request.student_id === userId).sort((a, b) => b.date_created - a.date_created)
                     .map((request) => (
                         <RequestCard
                             key={request.id}
@@ -270,7 +294,7 @@ const TabRequests = ({ userId, requests }) => {
                     ))}
                 <h2 className="text-center font-poppins font-bold text-[48px] mb-[20px]">Tutoring</h2>
                 {requests
-                    .filter((request) => request.tutor_id === userId)
+                    .filter((request) => request.tutor_id === userId).sort((a, b) => b.date_created - a.date_created)
                     .map((request) => (
                         <RequestCard
                             key={request.id}

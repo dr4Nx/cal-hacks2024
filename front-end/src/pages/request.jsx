@@ -54,8 +54,10 @@ const Request = () => {
         const docRef = doc(db, 'users', user.uid);
         const docSnap = await getDoc(docRef);
         let username;
+        let expertise;
         if (docSnap.exists()) {
           username = docSnap.data().username;
+          expertise = docSnap.data().expertisetopics;
         } else {
           setError('Request not found');
         }
@@ -64,6 +66,7 @@ const Request = () => {
         await updateDoc(requestDocRef, {
           tutor_id: user.uid,
           tutor_username: username,
+          tutor_expertise: expertise,
         });
         toast.success('You are now the tutor for this request!');
         setRequest((prevRequest) => ({
@@ -163,12 +166,17 @@ const Request = () => {
             </div>
             <div>
             {request.tutor_id && user.uid == request.student_id && !request.complete && (
+              <>
+              <p>
+                Their Expertise: {request.tutor_expertise.join(", ")}
+              </p>
               <input
                 type="button"
                 onClick={() => {handleComplete()}}
                 className="w-full my-5 p-2 bg-sage text-white rounded-md hover:bg-lightsage"
                 value="Mark as Complete"
                 />
+              </>
             )}
             </div>
           </div>

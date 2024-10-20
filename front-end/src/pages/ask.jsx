@@ -44,6 +44,7 @@ const Ask = () => {
 
         if (docSnap.exists()) {
           const studentUsername = docSnap.data().username; // If request exists, set it to state
+          const studentEmail = docSnap.data().email;
           setLoading(true);
           await addDoc(collection(db, "requests"), {
             topic: subject,
@@ -52,6 +53,7 @@ const Ask = () => {
             date_created: serverTimestamp(),
             student_id: studentId,
             student_username: studentUsername,
+            student_email: studentEmail,
             tutor_id: null,
             tutor_username: null
           });

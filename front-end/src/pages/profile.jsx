@@ -20,6 +20,7 @@ import {
 import { toast } from "react-toastify";
 import Spinner from "../components/Spinner";
 
+
 const Tabs = ({ text, setPage, page }) => {
     return (
         <>
@@ -35,7 +36,9 @@ const Tabs = ({ text, setPage, page }) => {
     );
 };
 const Sidebar = ({ name, setPage }) => {
+    const navigate = useNavigate();
     return (
+
         <>
             <div className="fixed top-0 bg-darksage h-full w-1/4 pt-32 text-center">
                 <h2 className="text-white font-bold text-[48px] font-poppins">
@@ -43,7 +46,10 @@ const Sidebar = ({ name, setPage }) => {
                 </h2>
                 {/* <hr className="border-white my-4" /> */}
                 <Tabs text="Profile" setPage={setPage} page={0} />
-                <Tabs text="Requests Manager" setPage={setPage} page={1} />
+                <Tabs text="Your Requests/Tutoring" setPage={setPage} page={1} />
+                <Tabs text="Make Request" setPage={() => navigate("/ask")} />
+                <Tabs text="Provide Help" setPage={() => navigate("/provide")} />
+                <Tabs text="Logout" setPage={() => navigate("/logout")} />
                 {/* <Tabs text="Store" setPage={setPage} page={2} /> */}
             </div>
         </>

@@ -80,6 +80,27 @@ const Request = () => {
     }
   };
 
+  const handleComplete = async () => {
+    if (user) {
+      try {
+        const requestDocRef = doc(db, 'requests', requestId);
+        await updateDoc(requestDocRef, {
+          complete: true,
+        });
+        toast.success('Request marked as complete!');
+        setRequest((prevRequest) => ({
+          ...prevRequest,
+          complete: true,
+        }));
+      } catch (err) {
+        console.log(err);
+        toast.error('Failed to mark request as complete');
+      }
+    } else {
+      toast.error('You need to be logged in to mark a request as complete');
+    }
+  }
+
   if (loading) return <Spinner loading={loading} />;
   if (error) return <div>{error}</div>;
 
@@ -120,7 +141,7 @@ const Request = () => {
                 Created at: {request.date_created.toDate().toString()}
               </p>
             </div>
-            {request.tutor_id ? (
+            <div>{request.tutor_id ? (
               <p className="font-semibold">
                 Tutor: {request.tutor_username || 'unassigned'}
               </p>
@@ -135,6 +156,21 @@ const Request = () => {
                 />
               )
             )}
+            </div>
+            <div>{request.tutor_id && user.uid == request.tutor_id && (
+              request.student_email
+              && <a href={`mailto:${request.student_email}`} className="w-full my-2 p-2 bg-sage text-white rounded-md hover:bg-lightsage">Contact Student: {request.student_email}</a>)}
+            </div>
+            <div>
+            {request.tutor_id && user.uid == request.student_id && !request.complete && (
+              <input
+                type="button"
+                onClick={() => {handleComplete()}}
+                className="w-full my-5 p-2 bg-sage text-white rounded-md hover:bg-lightsage"
+                value="Mark as Complete"
+                />
+            )}
+            </div>
           </div>
         ) : (
           <div>No request data available</div>

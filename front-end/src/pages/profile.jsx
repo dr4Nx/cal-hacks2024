@@ -46,7 +46,7 @@ const Sidebar = ({ name, setPage }) => {
     </>
   );
 };
-const TabProfile = ({ userId, userInfo, setUserInfo, requests }) => {
+const TabProfile = ({ userId, userInfo, setUserInfo, requests, setLoading }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [newExpertise, setNewExpertise] = useState(
     userInfo.expertisetopics.join(", ")
@@ -217,7 +217,7 @@ const TabRequests = ({ userId, requests }) => {
   return (
     <>
       <div className="ml-[25%] mt-[125px]">
-        <h2>Requests</h2>
+        <h2 className="text-center font-poppins font-bold text-[48px] mb-[20px]">Requests</h2>
         {requests
           .filter((request) => request.student_id === userId)
           .map((request) => (
@@ -232,7 +232,7 @@ const TabRequests = ({ userId, requests }) => {
               dateCreated={request.date_created}
             />
           ))}
-        <h2>Tutoring</h2>
+        <h2 className="text-center font-poppins font-bold text-[48px] mb-[20px]">Tutoring</h2>
         {requests
           .filter((request) => request.tutor_id === userId)
           .map((request) => (
@@ -299,6 +299,7 @@ const Profile = () => {
             userInfo={userInfo}
             setUserInfo={setUserInfo}
             requests={totalRequests}
+            setLoading={setLoading}
           />
         );
       case 1:

@@ -3,11 +3,13 @@ import { collection, addDoc, serverTimestamp, getFirestore , doc, getDoc} from "
 import { getAuth } from "firebase/auth";
 import { useNavigate } from "react-router-dom"
 import { toast } from "react-toastify"
+import Spinner from "../components/Spinner";
 
 const Ask = () => {
   const [subject, setSubject] = useState("");
   const [specificTopic, setSpecificTopic] = useState("");
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const db = getFirestore();
 
@@ -40,7 +42,7 @@ const Ask = () => {
 
         if (docSnap.exists()) {
           const studentUsername = docSnap.data().username; // If request exists, set it to state
-
+          setLoading(true);
           await addDoc(collection(db, "requests"), {
             topic: subject,
             description: specificTopic,
@@ -51,13 +53,14 @@ const Ask = () => {
             tutor_id: null,
             tutor_username: null
           });
+          setLoading(false);
   
           // Reset form fields after submission
           setSubject("");
           setSpecificTopic("");
   
           // Optionally, show a success message or redirect
-          alert("Request submitted successfully!");
+          toast.success("Request submitted successfully!");
         } else {
           setError('Request not found'); // If no such document, set an error message
         }
@@ -81,6 +84,8 @@ const Ask = () => {
 
     if (error) return <div>{error}</div>;
   };
+
+  if (loading) return <Spinner />;
 
   return (
     <div className = "justify-center text-center mt-[125px]">

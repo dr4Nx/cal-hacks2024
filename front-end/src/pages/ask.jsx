@@ -7,7 +7,6 @@ import { toast } from "react-toastify"
 const Ask = () => {
   const [subject, setSubject] = useState("");
   const [specificTopic, setSpecificTopic] = useState("");
-  const [studentUsername, setStudentUsername] = useState(null);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
   const db = getFirestore();
@@ -40,7 +39,7 @@ const Ask = () => {
         const docSnap = await getDoc(docRef); // Get the document from Firestore
 
         if (docSnap.exists()) {
-          setStudentUsername(docSnap.data().username); // If request exists, set it to state
+          const studentUsername = docSnap.data().username; // If request exists, set it to state
 
           await addDoc(collection(db, "requests"), {
             topic: subject,

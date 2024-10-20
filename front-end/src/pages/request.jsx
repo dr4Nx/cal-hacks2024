@@ -50,14 +50,16 @@ const Request = () => {
   if (error) return <div>{error}</div>;
 
   return (
-    <div className="request-container">
+    <div className="request-container mt-[125px] ml-[10%]">
       {request ? (
         <div className="request-details">
-          <h2>Request ID: {requestId}</h2>
-          <p><strong>Title:</strong> {request.topic}</p>
-          <p><strong>Description:</strong> {request.description}</p>
-          <p><strong>Posted by:</strong> {request.student_id}</p>
-          <p><strong>Created at:</strong> {request.date_created.toDate().toString()}</p>
+          <h2 className="font-figtree">Request ID: {requestId}</h2>
+          <p className ="font-poppins text-[48px]"><strong>Subject:</strong> {request.topic}</p>
+          <div className ="font-figtree">
+          <p><strong>From:</strong> {request.student_id}</p>
+          <p><strong>Date posted:</strong> {request.date_created.toDate().toString()}</p>
+          <p className = "mt-10"><strong>Description:</strong> {request.description}</p>
+          </div>
         </div>
       ) : (
         <div>No request data available</div>

@@ -14,7 +14,7 @@ const Tabs = ({ text, setPage, page }) => {
 const Sidebar = ({ name, lastName, setPage }) => {
     return (
         <>
-            <div className="fixed top-0 bg-darksage h-full w-1/4 pt-32 text-center">
+            <div className="fixed top-0 bg-darksage h-full min-w-[300px] w-1/4 pt-32 text-center">
                 <h2 className="text-white font-bold text-[48px] font-poppins">{name + " " + lastName}</h2>
                 <Tabs text="Profile" setPage={setPage} page={0} />
                 <Tabs text="Requests Manager" setPage={setPage} page={1} />
@@ -69,6 +69,15 @@ const TabProfile = () => {
 const TabRequests = () => {
     return (
         <>
+        <div className="mt-[125px] ml-[25%]">
+            <h1 className ="font-poppins font-bold text-[48px] text-center">Requests Manager</h1>
+            <p className = "font-poppins font-semibold text-[30px] ml-[5%] my-10">Active Requests</p>
+            <p className = "font-figtree text-sage italic ml-[5%]">There are currently no active requests</p>
+            <p className = "font-poppins font-semibold text-[30px] ml-[5%] my-10">Past Requests</p>
+
+            
+
+        </div>
         </>
     );
 }
@@ -80,6 +89,7 @@ const TabStore = () => {
 }
 const Profile = () => {
     const [page, setPage] = useState(0);
+    const [activeReq, setActiveRec] = useState(false);
 
     const choosePage = () => {
         switch (page) {

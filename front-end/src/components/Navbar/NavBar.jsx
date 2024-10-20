@@ -6,11 +6,9 @@ const Block= ({link,pagename})=>{
     return(
         <>
          <a href = {link}>
-         <div className = 'transition ease-in-out text-white font-figtree hover:text-sage'>
-        <div className ='transition ease-in-out top-0 hover:bg-white float-right text-center w-[110px] p-7'>
+         <div className = 'transition ease-in-out text-white font-figtree hover:text-sage top-0 hover:bg-white float-right text-center w-[110px] p-7'>
             
            <p> {pagename}</p>
-        </div>
         </div>
         </a>
         </>

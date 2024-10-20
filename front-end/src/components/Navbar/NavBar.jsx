@@ -40,9 +40,9 @@ const Navbar =({loggedIn}) =>{
         <div className = "top-0 fixed w-full bg-sage opacity-90 drop-shadow-md overflow-hidden z-10">
             <Home link = "/" />
             {loggedIn ? <JoinButton link="/logout" pagename="Logout"/> : <JoinButton link="/login" pagename="Join Us!"/>}
-            <Block link="/profile" pagename="Profile"/>
+            {loggedIn ? (<><Block link="/profile" pagename="Profile"/>
             <Block link="/ask" pagename="Ask"/>
-            <Block link="/provide" pagename="Provide"/>
+            <Block link="/provide" pagename="Provide"/></>): null} 
         </div>
     );
 }

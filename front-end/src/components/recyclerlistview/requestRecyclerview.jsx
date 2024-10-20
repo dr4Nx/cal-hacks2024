@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getFirestore, collection, getDocs } from 'firebase/firestore';
 import RequestCard from './RequestCard'; // Import the card component
+import Spinner from '../Spinner'
 
 const RequestRecyclerView = () => {
   const [requests, setRequests] = useState([]);
@@ -37,7 +38,7 @@ const RequestRecyclerView = () => {
           ))}
         </div>
       ) : (
-        <div>Loading...</div>
+        <Spinner loading={true} />
       )}
     </div>
   );

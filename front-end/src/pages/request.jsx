@@ -3,6 +3,7 @@ import { getFirestore, doc, getDoc } from 'firebase/firestore';
 import { useParams, useNavigate } from 'react-router-dom' 
 import { getAuth } from 'firebase/auth'
 import { toast } from 'react-toastify'
+import Spinner from '../components/Spinner'
 
 const Request = () => {
   const auth = getAuth();
@@ -45,7 +46,7 @@ const Request = () => {
     fetchRequest();
   }, [db, requestId]); // Fetch the request whenever the requestId changes
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) return <Spinner loading={loading} />;
   if (error) return <div>{error}</div>;
 
   return (

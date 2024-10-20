@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { collection, addDoc, serverTimestamp, getFirestore} from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 import { useNavigate } from "react-router-dom"
@@ -9,6 +9,20 @@ const Ask = () => {
   const [specificTopic, setSpecificTopic] = useState("");
   const navigate = useNavigate();
   const db = getFirestore();
+
+
+  useEffect(() => {
+    const auth = getAuth();
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (!user) {
+        navigate("/login");
+        toast.error("You are not Logged In!");
+      }
+    });
+
+    return () => unsubscribe();
+  }, [navigate]);
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -35,14 +49,15 @@ const Ask = () => {
             setSpecificTopic("");
       
             // Optionally, show a success message or redirect
-            alert("Request submitted successfully!");
+            toast.success("Request submitted successfully!");
+            navigate("/profile");
       
           } catch (error) {
             console.error("Error adding document: ", error);
           }
     } else {
         navigate("/login");
-        toast.error("you are not logged in")
+        toast.error("You are not Logged In!")
     }
     
     

@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { getAuth, signOut } from "firebase/auth";
+import Spinner from "../components/Spinner"
 
 const LogOut = ({ setLoggedIn }) => {
   const navigate = useNavigate();
@@ -21,7 +22,7 @@ const LogOut = ({ setLoggedIn }) => {
       });
   }, []);
 
-  return <div>Logging out...</div>;
+  return <Spinner />;
 };
 
 export default LogOut;

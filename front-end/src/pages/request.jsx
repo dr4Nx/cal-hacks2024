@@ -126,12 +126,12 @@ const Request = () => {
             ) : (
               user &&
               user.uid !== request.student_id && (
-                <button
-                  onClick={handleBecomeTutor}
-                  className="w-full p-2 bg-green-600 text-white rounded-md hover:bg-green-700"
-                >
-                  Become Tutor
-                </button>
+                <input
+                  type="button"
+                  onClick={() => {handleBecomeTutor()}}
+                  className="w-full p-2 bg-sage text-white rounded-md hover:bg-lightsage"
+                  value="Become Tutor"
+                />
               )
             )}
           </div>

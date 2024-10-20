@@ -22,7 +22,7 @@ const Provide = () => {
   }, [navigate]);
 
   return (
-    <div>
+    <div className="mt-[125px]">
       <h1>Available Requests</h1>
       <RequestRecyclerView />
     </div>

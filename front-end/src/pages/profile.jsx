@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import Marquee from "react-fast-marquee";
+import "@animxyz/core";
+import { XyzTransition } from "@animxyz/react";
 const Tabs = ({ text, setPage, page }) => {
     return (
         <>
@@ -28,8 +30,13 @@ const TabProfile = () => {
     return (
         <>
             <div className="ml-[25%] mt-[125px]">
+                <XyzTransition appear xyz="fade down stagger duration-8">
+                <div>
                 <h1 className="text-center font-poppins font-bold text-[48px] mb-[20px]">Hi John!</h1>
+                </div>
+                </XyzTransition>
                 <div className="flex justify-center items-start space-x-8">
+                <XyzTransition appear xyz="fade down stagger duration-9">
                     <div className="bg-lightsage rounded-lg drop-shadow-lg text-center p-5 w-5/12"> {/*stats*/}
                         <h3 className="font-poppins font-bold text-[24px]">John Doe</h3>
                         <div className="font-figtree">
@@ -44,7 +51,9 @@ const TabProfile = () => {
                         </div>
                         <input type="button" value="Edit Profile" className="rounded-lg font-figtree bg-sage text-white p-2"></input>
                     </div>
+                    </XyzTransition>
                     <div className="flex flex-col space-y-8 w-5/12">
+                    <XyzTransition appear xyz="fade down stagger duration-11">
                         <div className="bg-lightsage rounded-lg drop-shadow-lg text-center p-5 w-full"> {/*Tutoring*/}
                             <h3 className="font-poppins font-bold text-[24px]">Tutoring</h3>
                             <div className="font-figtree">
@@ -52,12 +61,12 @@ const TabProfile = () => {
                                 <p className="text-sage">Calculus, Linear Algebra, Diffrential Equations, Bear Physics</p>
                             </div>
                         </div>
+                        </XyzTransition>
+                        <XyzTransition appear xyz="fade down stagger duration-12">
                         <div className="bg-lightsage rounded-lg drop-shadow-lg text-center p-5 w-full"> {/*profile*/}
                             <h3 className="font-poppins font-bold text-[24px]">Stats</h3>
-
-
-
                         </div>
+                        </XyzTransition>
                     </div>
                 </div>
             </div>

@@ -23,6 +23,8 @@ import { ToastContainer, toast } from "react-toastify";
 import { useState } from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useEffect } from "react";
+import "@animxyz/core";
+import { XyzTransition } from "@animxyz/react";
 
 
 

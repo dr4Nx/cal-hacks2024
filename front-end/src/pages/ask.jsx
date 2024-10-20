@@ -3,6 +3,8 @@ import { collection, addDoc, serverTimestamp, getFirestore} from "firebase/fires
 import { getAuth } from "firebase/auth";
 import { useNavigate } from "react-router-dom"
 import { toast } from "react-toastify"
+import "@animxyz/core";
+import { XyzTransition } from "@animxyz/react";
 
 const Ask = () => {
   const [subject, setSubject] = useState("");
@@ -64,6 +66,7 @@ const Ask = () => {
   };
 
   return (
+    <XyzTransition appear xyz="fade down duration-10">
     <div className = "justify-center text-center mt-[125px]">
       <h1 className = "font-poppins font-bold text-[48px] mb-[20px] ">We are happy to help!</h1>
       <div className="bg-lightsage rounded drop-shadow-lg p-10 m-auto text-center min-w-[450px] w-5/12">
@@ -100,6 +103,7 @@ const Ask = () => {
         </form>
       </div>
     </div>
+    </XyzTransition>
   );
 };
 

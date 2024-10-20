@@ -39,6 +39,7 @@ const Sidebar = ({ name, setPage }) => {
         <h2 className="text-white font-bold text-[48px] font-poppins">
           {name}
         </h2>
+        <hr className="border-white my-4" />
         <Tabs text="Profile" setPage={setPage} page={0} />
         <Tabs text="Requests Manager" setPage={setPage} page={1} />
         {/* <Tabs text="Store" setPage={setPage} page={2} /> */}

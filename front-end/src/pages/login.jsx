@@ -86,7 +86,7 @@ const Login = () => {
         
         <button
           className={`px-4 py-2 rounded-t-lg shadow-l-md font-figtree ml-10 float-left h-[50px] ${
-            isLogin ? "bg-lightsage" : "bg-darksage  text-white"
+            isLogin ? "transition ease-in-out bg-lightsage" : "transition ease-in-out bg-darksage  text-white"
           }`}
           onClick={() => setIsLogin(true)}
         >
@@ -94,7 +94,7 @@ const Login = () => {
         </button>
         <button
           className={`px-4 py-2  rounded-t-lg shadow-l-md font-figtree h-[50px] ${
-            !isLogin ? "bg-lightsage" : "bg-darksage text-white"
+            !isLogin ? "transition ease-in-out bg-lightsage" : "transition ease-in-out bg-darksage text-white"
           }`}
           onClick={() => setIsLogin(false)}
         >

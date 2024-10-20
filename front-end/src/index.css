@@ -1,7 +1,7 @@
+@import '@animxyz/core';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import '@animxyz/core';
 @include xyz-all;
 @include xyz-core;
 @include xyz-utilities;

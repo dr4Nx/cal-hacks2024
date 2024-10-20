@@ -6,8 +6,8 @@ const Block= ({link,pagename})=>{
     return(
         <>
          <a href = {link}>
-         <div className = 'text-white font-figtree hover:text-sage'>
-        <div className ='top-0 hover:bg-white float-right text-center w-[110px] p-7'>
+         <div className = 'transition ease-in-out text-white font-figtree hover:text-sage'>
+        <div className ='transition ease-in-out top-0 hover:bg-white float-right text-center w-[110px] p-7'>
             
            <p> {pagename}</p>
         </div>
@@ -20,7 +20,7 @@ const JoinButton= ({link,pagename})=>{
     return(
         <>
          <a href = {link}>
-        <div className ='rounded bg-white font-figtree text-sage float-right text-center p-2 my-5 mx-5'>
+        <div className ='transition ease-in-out delay-150 hover:scale-110 hover:bg-lightsage rounded bg-white font-figtree text-sage float-right text-center p-2 my-5 mx-5 hover:drop-shadow-lg '>
            <p>{pagename}</p>
         </div>
         </a>
@@ -39,9 +39,9 @@ const Home = ({link}) =>{
 }
 const Navbar =({loggedIn}) =>{
     return(
-        <div className = "top-0 fixed w-full bg-sage opacity-100 drop-shadow-md overflow-hidden z-10">
+        <div className = "top-0 fixed w-full bg-sage opacity-100 shadow-2xl overflow-hidden z-10">
             <Home link = "/" />
-            {loggedIn ? <JoinButton link="/logout" pagename="Logout"/> : <JoinButton link="/login" pagename="Join Us!"/>}
+            {loggedIn ? <JoinButton link="/logout" pagename="Log Out"/> : <JoinButton link="/login" pagename="Join Us!"/>}
             {loggedIn ? (<><Block link="/profile" pagename="Profile"/>
             <Block link="/ask" pagename="Ask"/>
             <Block link="/provide" pagename="Provide"/></>): null} 

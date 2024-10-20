@@ -37,7 +37,7 @@ const Home = ({ loggedIn }) => {
                         <br />
                         <p className='font-figtree'>No more one am crying sessions. No more feeling like an academic victim. Become academia :D</p>
                         <br />
-                        <Link to={loggedIn ? "/profile" : "/login"} className="bg-sage hover:bg-darksage rounded font-figtree my-3 p-4 text-white">Get Started</Link>
+                        <Link to={loggedIn ? "/profile" : "/login"} className="transition ease-in-out delay-150 bg-sage hover:bg-darksage rounded font-figtree my-3 p-4 text-white">Get Started</Link>
                     </div>
 
                 </div>
@@ -53,7 +53,7 @@ const Home = ({ loggedIn }) => {
                         {/*Fix 24/7 academic support heading not wrapping and going below the textbox :(*/}
                         <h2 className='font-bold font-poppins text-wrap text-[42px] mt-[50%]'>24/7 Academic Support</h2>
                         <br />
-                        <Link to={loggedIn ? "/profile" : "/login"} className="bg-sage hover:bg-darksage rounded font-figtree my-3 p-4 text-white">Get Started</Link>
+                        <Link to={loggedIn ? "/profile" : "/login"} className="transition ease-in-out delay-150 bg-sage hover:bg-darksage rounded font-figtree my-3 p-4 text-white">Get Started</Link>
                     </div>}
                 </XyzTransition>
             </div>
@@ -70,7 +70,7 @@ const Home = ({ loggedIn }) => {
                     </div>}
                 </XyzTransition>
                 <br></br>
-                <Link to={loggedIn ? "/profile" : "/login"} className="bg-sage hover:bg-darksage rounded font-figtree my-3 p-4 text-white">Get Started</Link>
+                <Link to={loggedIn ? "/profile" : "/login"} className="transition ease-in-out delay-150 bg-sage hover:bg-darksage rounded font-figtree my-3 p-4 text-white">Get Started</Link>
                 {/*change to /prizes once you make it*/}
             </div>
 

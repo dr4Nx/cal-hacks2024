@@ -91,7 +91,7 @@ const Ask = () => {
 
   return (
     <XyzTransition appear xyz="fade down duration-10">
-    <div className = "justify-center text-center mt-[125px]">
+    <div className = "justify-center text-center mt-[15%]">
       <h1 className = "font-poppins font-bold text-[48px] mb-[20px] ">We are happy to help!</h1>
       <div className="bg-lightsage rounded drop-shadow-lg p-10 m-auto text-center min-w-[450px] w-5/12">
         <h1 className="font-bold font-figtree mb-[20px]">What do you need help with?</h1>

@@ -30,6 +30,7 @@ export default {
       },
       'sage': '#607A67',
       'darksage': '#4D6252',
+      'sagelite': '#b4c2b7',
       'lightsage': '#d1ded4',
       'red': '#b91c1c',
     

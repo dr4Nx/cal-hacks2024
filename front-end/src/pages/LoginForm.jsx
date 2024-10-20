@@ -27,11 +27,13 @@ const LoginForm = ({ setLoading }) => {
         password
       );
       setLoading(false);
-      navigate("/");
+      navigate("/profile");
     } catch (err) {
       setError(err.message);
       console.log(err.message);
       toast.error("Incorrect Login");
+      navigate("/login");
+      setLoading(false);
     }
   };
   return (
@@ -57,7 +59,7 @@ const LoginForm = ({ setLoading }) => {
         />
         <input
           type="submit"
-          className="bg-sage hover:bg-lightsage rounded my-3 p-2 text-white"
+          className="transition ease-in-out delay-150 hover:scale-110 bg-sage hover:bg-darksage rounded my-3 p-2 text-white"
           value="submit"
         />
       </form>

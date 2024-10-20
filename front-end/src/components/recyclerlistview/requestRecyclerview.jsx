@@ -28,6 +28,7 @@ const RequestRecyclerView = () => {
           {requests.map((request) => (
             <RequestCard
               key={request.id}
+              id={request.id}
               topic={request.topic}
               description={request.description}
               studentId={request.student_id}

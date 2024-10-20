@@ -5,3 +5,7 @@
 @include xyz-all;
 @include xyz-core;
 @include xyz-utilities;
+
+.triangle {
+    background: linear-gradient(to bottom right, #ffffff 0%, #ffffff 50%, #d1ded4 50%, #d1ded4 100%);
+}

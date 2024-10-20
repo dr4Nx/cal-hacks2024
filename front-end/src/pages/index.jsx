@@ -25,7 +25,7 @@ const Home = ({ loggedIn }) => {
     return (
         <div onScroll={handleScroll} className="scrollable-element">
             <XyzTransition appear xyz="fade down duration-10">
-                <div className='w-full h-dvh'> {/*for the titlest page*/}
+                <div className='w-full h-[70dvh] triangle'> {/*for the titlest page*/}
                     <div className='text-center mt-[350px]'>
 
                         <h1 className="text-5xl font-bold font-poppins">
@@ -39,9 +39,13 @@ const Home = ({ loggedIn }) => {
                         <br />
                         <Link to={loggedIn ? "/profile" : "/login"} className="transition ease-in-out delay-150 bg-sage hover:bg-darksage rounded font-figtree my-3 p-4 text-white">Get Started</Link>
                     </div>
-
                 </div>
             </XyzTransition>
+            <div className="text-[40px] font-bold italic font-figtree mb-[30dvh]">
+            <Marquee>
+                    BE AT THE FRONTLINES OF EDUCATION FOR ALL
+            </Marquee>
+            </div>
             <div className='bg-lightsage flex overflow-hidden rounded-xl min-h-fit my-24 mx-10'>{/*for the about section*/}
                 <XyzTransition appear xyz="fade down duration-10">
                 {window.scrollY > 600 && <div className='drop-shadow-sm bg-white font-figtree float-left text-[32px] overflow-hidden rounded-xl tracking-wide min-h-fit ml-10 my-[10%] min-w-[600px] w-5/12 p-10'>
@@ -75,9 +79,7 @@ const Home = ({ loggedIn }) => {
             </div>
 
             <div className="text-[40px] font-bold italic font-figtree">
-                <Marquee>
-                    BE AT THE FRONTLINES OF EDUCATION FOR ALL
-                </Marquee>
+
             </div>
             </div>
     );

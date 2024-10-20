@@ -79,7 +79,7 @@ const Login = () => {
     <>
     <div className ="mt-[150px]">
     <h1 className ="text-center m-20 font-poppins font-bold text-[48px]">It's great to see you!</h1>
-      <div className="justify-center mx-auto mb-4 w-5/12">
+      <div className="justify-center mx-auto mb-4 w-5/12 min-w-[450px]">
         
         <button
           className={`px-4 py-2 rounded-t-lg shadow-l-md font-figtree ml-10 float-left h-[50px] ${

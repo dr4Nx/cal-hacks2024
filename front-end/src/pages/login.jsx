@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import Spinner from "../components/Spinner.jsx";
 import "@animxyz/core";
 import { XyzTransition } from "@animxyz/react";
+import Marquee from "react-fast-marquee";
 
 const Login = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -107,6 +108,11 @@ const Login = () => {
       </div>
       </div>
       </XyzTransition>
+      <div className="text-[40px] font-bold italic font-figtree mt-[20dvh] w-full">
+            <Marquee>
+                    BE AT THE FRONTLINES OF EDUCATION FOR ALL
+            </Marquee>
+      </div>
     </>
   );
 };

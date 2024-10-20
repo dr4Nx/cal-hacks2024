@@ -3,6 +3,8 @@ import { getFirestore, collection, getDocs, getDoc, doc } from 'firebase/firesto
 import { getAuth, onAuthStateChanged } from 'firebase/auth'; // To get the current user's expertise
 import RequestCard from './RequestCard'; // Import the card component
 import Spinner from '../Spinner';
+import "@animxyz/core";
+import { XyzTransition } from "@animxyz/react";
 
 const RequestRecyclerView = () => {
   const [requests, setRequests] = useState([]);
@@ -159,6 +161,8 @@ const RequestRecyclerView = () => {
       {requests.length > 0 ? (
         <div>
           {getFilteredRequests().map((request) => (
+            <XyzTransition appear xyz="fade down stagger duration-5" key={request.id}>
+            <div>
             <RequestCard
               key={request.id}
               id={request.id}
@@ -169,8 +173,11 @@ const RequestRecyclerView = () => {
               complete={request.complete}
               dateCreated={request.date_created}
             />
+            </div>
+            </XyzTransition>
           ))}
         </div>
+
       ) : (
         <Spinner loading={true} />
       )}

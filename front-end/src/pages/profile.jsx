@@ -277,7 +277,13 @@ const TabRequests = ({ userId, requests }) => {
     return (
         <>
             <div className="ml-[25%] mt-[125px]">
+                <XyzTransition appear xyz="fade down duration-5">
+                <div>
                 <h2 className="text-center font-poppins font-bold text-[48px] mb-[20px]">Requests</h2>
+                </div>
+                </XyzTransition>
+                <XyzTransition appear xyz="fade down duration-12">
+                <div>
                 {requests
                     .filter((request) => request.student_id === userId).sort((a, b) => b.date_created - a.date_created)
                     .map((request) => (
@@ -292,7 +298,15 @@ const TabRequests = ({ userId, requests }) => {
                             dateCreated={request.date_created}
                         />
                     ))}
+                </div>
+                </XyzTransition>
+                <XyzTransition appear xyz="fade down duration-5">
+                <div>
                 <h2 className="text-center font-poppins font-bold text-[48px] mb-[20px]">Tutoring</h2>
+                </div>
+                </XyzTransition>
+                <XyzTransition appear xyz="fade down duration-12">
+                    <div>
                 {requests
                     .filter((request) => request.tutor_id === userId).sort((a, b) => b.date_created - a.date_created)
                     .map((request) => (
@@ -307,6 +321,8 @@ const TabRequests = ({ userId, requests }) => {
                             dateCreated={request.date_created}
                         />
                     ))}
+                    </div>
+                    </XyzTransition>
             </div>
         </>
     );
@@ -375,11 +391,12 @@ const Profile = () => {
         <>
             <div className="fixed top-0 right-0 w-9/12 shadow font-figtree ml-3/12 mt-[80px] bg-white">
                 <Marquee>
-                    There are currently -
-                    {totalRequests.filter((request) => request.tutor_id === null).length}-
-                    open tutoring requests and -
-                    {totalRequests.filter((request) => request.tutor_id !== null).length}-
-                    fulfilled requests!
+                    There are currently <p className="text-white">c</p>
+                    <p className="font-bold text-sage">
+                    {totalRequests.filter((request) => request.tutor_id === null).length}
+                    </p> 
+                    <p className="text-white">c</p>
+                    open tutoring requests!
                 </Marquee>
             </div>
             <Sidebar name={userInfo.fullName} setPage={setPage} />

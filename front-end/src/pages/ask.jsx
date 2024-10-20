@@ -41,6 +41,24 @@ const Ask = () => {
 
         if (docSnap.exists()) {
           setStudentUsername(docSnap.data().username); // If request exists, set it to state
+
+          await addDoc(collection(db, "requests"), {
+            topic: subject,
+            description: specificTopic,
+            complete: false,
+            date_created: serverTimestamp(),
+            student_id: studentId,
+            student_username: studentUsername,
+            tutor_id: null,
+            tutor_username: null
+          });
+  
+          // Reset form fields after submission
+          setSubject("");
+          setSpecificTopic("");
+  
+          // Optionally, show a success message or redirect
+          alert("Request submitted successfully!");
         } else {
           setError('Request not found'); // If no such document, set an error message
         }
@@ -50,26 +68,9 @@ const Ask = () => {
       }
 
       try {
-        
         // Add a new document to the 'requests' collection in Firestore
 
-        await addDoc(collection(db, "requests"), {
-          topic: subject,
-          description: specificTopic,
-          complete: false,
-          date_created: serverTimestamp(),
-          student_id: studentId,
-          student_username: studentUsername,
-          tutor_id: null,
-          tutor_username: null
-        });
-
-        // Reset form fields after submission
-        setSubject("");
-        setSpecificTopic("");
-
-        // Optionally, show a success message or redirect
-        alert("Request submitted successfully!");
+        
 
       } catch (error) {
         console.error("Error adding document: ", error);

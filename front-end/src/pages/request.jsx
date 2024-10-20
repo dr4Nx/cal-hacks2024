@@ -102,7 +102,9 @@ const Request = () => {
           {request.tutor_id ? (
             <p><strong>Tutor:</strong> {request.tutor_id}</p>
           ) : (
-            <button onClick={handleBecomeTutor} className="btn-tutor">Become Tutor</button>
+            user && user.uid !== request.student_id && ( // Only show the button if the current user is not the request poster
+              <button onClick={handleBecomeTutor} className="btn-tutor">Become Tutor</button>
+            )
           )}
         </div>
       ) : (

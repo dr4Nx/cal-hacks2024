@@ -120,6 +120,7 @@ const RequestRecyclerView = () => {
           <select
             id="sort"
             value={sortOption}
+            className=" border-darksage border-2 rounded-md p-2"
             onChange={(e) => setSortOption(e.target.value)}
           >
             <option value="earliest">Earliest to Latest</option>
@@ -138,7 +139,7 @@ const RequestRecyclerView = () => {
         {/* Reset Button */}
         <button
           onClick={handleReset} // Call reset handler
-          className="p-2 bg-red-500 text-sage rounded-md hover:bg-red-700 ml-2"
+          className="p-2 bg-red text-white rounded-md hover:bg-red-700 ml-2"
         >
           Reset
         </button>
@@ -154,7 +155,7 @@ const RequestRecyclerView = () => {
             setSearchTerm(e.target.value);
             setIsMatchingSkills(false); // Disable skill matching if search is active
           }}
-          className="p-2 w-full bg-gray-100 rounded-md"
+          className="p-2 w-1/2 border-darksage border-2 rounded-md"
         />
       </div>
 

@@ -92,7 +92,7 @@ const TabProfile = ({ userId, userInfo, setUserInfo, requests, setLoading }) => 
               {userInfo.fullName}
             </h3>
             <div className="font-figtree">
-              <p>Note: Password is not changeable</p>
+              {/* <p>Note: Password is not changeable</p> */}
               <p>Real Name</p>
               {isEditing ? (
                 <input
@@ -314,7 +314,7 @@ const Profile = () => {
 
   return (
     <>
-      <div className="fixed top-0 right-0 w-9/12 shadow font-figtree ml-3/12 mt-[80px]">
+      <div className="fixed top-0 right-0 w-9/12 shadow font-figtree ml-3/12 mt-[80px] bg-white">
         <Marquee>
           There are currently -
           {totalRequests.filter((request) => request.tutor_id === null).length}-

@@ -32,7 +32,8 @@ const Home = ({link}) =>{
         
         <>
         <a href = {link}>
-        <div className = 'bg-lightsage rounded-full float-left w-[45px] h-[45px] my-4 ml-4'><p> </p></div>
+        {/* <div className = 'bg-lightsage rounded-full float-left w-[45px] h-[45px] my-4 ml-4'><p> </p></div> */}
+        <img src="../../../public/whale1.png" className ="size-[5%] float-left my-1 ml-7"></img>
         </a>
         </>
     );

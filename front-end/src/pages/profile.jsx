@@ -158,14 +158,14 @@ const TabProfile = ({ userId, userInfo, setUserInfo, requests, setLoading }) => 
                                     type="button"
                                     value="Save"
                                     onClick={handleSave}
-                                    className="rounded-lg font-figtree bg-sage text-white p-2 mt-2"
+                                    className="transition ease-in-out delay-150 hover:bg-darksage hover:scale-110 rounded-lg font-figtree bg-sage text-white p-2 mt-2"
                                 />
                             ) : (
                                 <input
                                     type="button"
                                     value="Edit Profile"
                                     onClick={() => setIsEditing(true)}
-                                    className="rounded-lg font-figtree bg-sage text-white p-2 mt-5"
+                                    className="transition ease-in-out delay-150 hover:bg-darksage hover:scale-110 rounded-lg font-figtree bg-sage text-white p-2 mt-5"
                                 />
                             )}
                         </div>
@@ -197,7 +197,7 @@ const TabProfile = ({ userId, userInfo, setUserInfo, requests, setLoading }) => 
                                             type="button"
                                             value="Save"
                                             onClick={handleSave}
-                                            className="rounded-lg font-figtree bg-sage text-white p-2 mt-2"
+                                            className="transition ease-in-out delay-150 hover:bg-darksage hover:scale-110 rounded-lg font-figtree bg-sage text-white p-2 mt-2"
                                         />
                                     </>
                                 ) : (
@@ -205,7 +205,7 @@ const TabProfile = ({ userId, userInfo, setUserInfo, requests, setLoading }) => 
                                         type="button"
                                         value="Edit Expertise"
                                         onClick={() => setIsEditing(true)}
-                                        className="rounded-lg font-figtree bg-sage text-white p-2"
+                                        className="transition ease-in-out delay-150 hover:bg-darksage hover:scale-110 rounded-lg font-figtree bg-sage text-white p-2"
                                     />
                                 )}
                             </div>
@@ -217,7 +217,7 @@ const TabProfile = ({ userId, userInfo, setUserInfo, requests, setLoading }) => 
                                 <h3 className="font-poppins font-bold text-[30px] my-4">Stats</h3>
                                 <div className = "flex justify-between items-center font-figtree mt-6 mb-2">
                                 <p>
-                                    Number Requested
+                                    Requests Made
                                 </p>
                                 <p className ="text-sage">
                                 {" "}
@@ -229,7 +229,7 @@ const TabProfile = ({ userId, userInfo, setUserInfo, requests, setLoading }) => 
                                 </div>
                                 <div className = "flex justify-between items-center font-figtree my-2">
                                 <p>
-                                    Number Claimed
+                                    Requests Claimed
                                 </p>
                                 <p className ="text-sage">
                                 {" "}
@@ -241,7 +241,7 @@ const TabProfile = ({ userId, userInfo, setUserInfo, requests, setLoading }) => 
                                 </div>
                                 <div className = "flex justify-between items-center font-figtree my-2">
                                 <p>
-                                    Number Completed (Student)
+                                    Requests Completed as a Student
                                 </p>
                                 <p className ="text-sage">
                                 {" "}
@@ -253,7 +253,7 @@ const TabProfile = ({ userId, userInfo, setUserInfo, requests, setLoading }) => 
                                 </div>
                                 <div className = "flex justify-between items-center font-figtree my-2">
                                 <p>
-                                    Number Completed (Tutor)
+                                    Requests Completed as a Tutor
                                 </p>
                                 <p className ="text-sage">
                                 {" "}

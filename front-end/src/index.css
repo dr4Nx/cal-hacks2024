@@ -9,3 +9,7 @@
 .triangle {
     background: linear-gradient(to bottom right, #ffffff 0%, #ffffff 50%, #d1ded4 50%, #d1ded4 100%);
 }
+
+.reverse-triangle {
+  background: linear-gradient(to bottom right, #d1ded4 0%, #d1ded4 50%, #ffffff 50%, #ffffff 100%);
+}

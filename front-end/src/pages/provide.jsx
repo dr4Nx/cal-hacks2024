@@ -39,7 +39,7 @@ const Provide = () => {
       <RequestRecyclerView />
       <div className="text-[40px] font-bold italic font-figtree mt-[20dvh] w-full">
             <Marquee>
-                    BE AT THE FRONTLINES OF EDUCATION FOR ALL
+                    BE AT THE FRONTLINES OF EDUCATION FOR ALL.
             </Marquee>
       </div>      
     </div>

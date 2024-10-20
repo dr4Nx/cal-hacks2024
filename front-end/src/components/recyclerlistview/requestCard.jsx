@@ -1,33 +1,32 @@
 import { Link } from 'react-router-dom';
 
-const RequestCard = ({ id, topic, description, studentId, tutorId, complete, dateCreated }) => {
+const RequestCard = ({ id, topic, description, studentId, dateCreated }) => {
   return (
     <Link to={`/request/${id}`}>
-      <div style={styles.card}>
-        <h3 style={styles.title}>Topic: {topic}</h3>
-        <p><strong>Description:</strong> {description}</p>
-        <p><strong>Student ID:</strong> {studentId}</p>
-        <p><strong>Tutor ID:</strong> {tutorId}</p>
-        <p><strong>Completed:</strong> {complete ? 'Yes' : 'No'}</p>
-        <p><strong>Date Created:</strong> {new Date(dateCreated.toDate()).toLocaleString()}</p>
+      <div className="bg-gray-100 rounded-lg p-6 shadow-md flex items-center justify-between">
+        <div>
+          {/* Topic */}
+          <h3 className="text-xl font-bold text-black">{topic}</h3>
+          
+          {/* Description */}
+          <p className="text-gray-700 mt-2">{description}</p>
+
+          {/* Student ID */}
+          <p className="text-gray-500 mt-4">Student: {studentId}</p>
+
+          {/* Date Created */}
+          <p className="text-gray-500 text-sm">Posted: {dateCreated.toDate().toString()}</p>
+        </div>
+
+        {/* Accept Button */}
+        <div className="flex flex-col items-center">
+          <button className="bg-green-700 text-white py-2 px-4 rounded-lg mt-4">
+            Accept
+          </button>
+        </div>
       </div>
     </Link>
   );
-};
-
-const styles = {
-  card: {
-    padding: 16,
-    margin: '10px 0',
-    backgroundColor: '#f1f1f1',
-    borderRadius: 8,
-    boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
-  },
-  title: {
-    marginBottom: 8,
-    fontSize: 18,
-    fontWeight: 'bold',
-  },
 };
 
 export default RequestCard;

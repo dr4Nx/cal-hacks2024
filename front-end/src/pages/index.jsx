@@ -41,12 +41,13 @@ const Home = ({ loggedIn }) => {
                     </div>
                 </div>
             </XyzTransition>
-            <div className="text-[40px] font-bold italic font-figtree mb-[30dvh]">
+            <div className="bg-lightsage w-full h-[10dvh]"></div>
+            <div className="text-[40px] font-bold italic font-figtree">
             <Marquee>
                     BE AT THE FRONTLINES OF EDUCATION FOR ALL
             </Marquee>
             </div>
-            <div className='bg-lightsage flex overflow-hidden rounded-xl min-h-fit my-24 mx-10'>{/*for the about section*/}
+            <div className='bg-lightsage flex overflow-hidden min-h-[100dvh]'>{/*for the about section*/}
                 <XyzTransition appear xyz="fade down duration-10">
                 {window.scrollY > 600 && <div className='drop-shadow-sm bg-white font-figtree float-left text-[32px] overflow-hidden rounded-xl tracking-wide min-h-fit ml-10 my-[10%] min-w-[600px] w-5/12 p-10'>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.</p>

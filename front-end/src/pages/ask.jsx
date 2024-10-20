@@ -6,6 +6,7 @@ import { toast } from "react-toastify"
 import "@animxyz/core";
 import { XyzTransition } from "@animxyz/react";
 import Spinner from "../components/Spinner";
+import Marquee from "react-fast-marquee";
 
 const Ask = () => {
   const [subject, setSubject] = useState("");
@@ -92,6 +93,7 @@ const Ask = () => {
   if (loading) return <Spinner />;
 
   return (
+    <>
     <XyzTransition appear xyz="fade down duration-10">
     <div className = "justify-center text-center mt-[15%]">
       <h1 className = "font-poppins font-bold text-[48px] mb-[20px] ">We are happy to help!</h1>
@@ -119,6 +121,12 @@ const Ask = () => {
       </div>
     </div>
     </XyzTransition>
+    <div className="text-[40px] font-bold italic font-figtree mt-[20dvh] w-full">
+            <Marquee>
+                    BE AT THE FRONTLINES OF EDUCATION FOR ALL
+            </Marquee>
+      </div>
+    </>
   );
 };
 

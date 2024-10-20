@@ -102,13 +102,13 @@ const Ask = () => {
         <form onSubmit={handleSubmit}>
           <input
             className="block shadow border-none appearance-none border rounded w-full py-2 px-3 my-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            placeholder="Subject"
+            placeholder="Subject/General Topic (e.g. Calculus III, Math)"
             value={subject}
             onChange={(e) => setSubject(e.target.value)}
           />
           <textarea
-            className="block shadow border-none resize-none appearance-none border rounded w-full py-2 px-3 my-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            placeholder="Specific topic (the more specific you are, the better we can match you!)"
+            className="block shadow border-none resize-none appearance-none border rounded w-full h-[150px] py-2 px-3 my-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            placeholder="Specific Help Required (the more specific you are, with more keywords, the better we can match you!)"
             value={specificTopic}
             onChange={(e) => setSpecificTopic(e.target.value)}
           />
@@ -123,7 +123,7 @@ const Ask = () => {
     </XyzTransition>
     <div className="text-[40px] font-bold italic font-figtree mt-[20dvh] w-full">
             <Marquee>
-                    BE AT THE FRONTLINES OF EDUCATION FOR ALL
+                    BE AT THE FRONTLINES OF EDUCATION FOR ALL.
             </Marquee>
       </div>
     </>

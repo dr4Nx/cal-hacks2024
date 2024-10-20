@@ -84,6 +84,7 @@ const Request = () => {
   if (error) return <div>{error}</div>;
 
   return (
+
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
       <div className="bg-gray-200 p-8 rounded-md shadow-md w-full max-w-md">
         <h1 className="text-2xl font-bold text-center mb-6">Request</h1>

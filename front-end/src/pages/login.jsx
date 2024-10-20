@@ -6,6 +6,8 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useEffect } from "react";
 import Spinner from "../components/Spinner.jsx";
+import "@animxyz/core";
+import { XyzTransition } from "@animxyz/react";
 
 const Login = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -77,6 +79,7 @@ const Login = () => {
 
   return (
     <>
+    <XyzTransition appear xyz="fade down duration-10">
     <div className ="mt-[150px]">
     <h1 className ="text-center m-20 font-poppins font-bold text-[48px]">It's great to see you!</h1>
       <div className="justify-center mx-auto mb-4 w-5/12 min-w-[450px]">
@@ -103,6 +106,7 @@ const Login = () => {
       </div>
       </div>
       </div>
+      </XyzTransition>
     </>
   );
 };

@@ -1,5 +1,7 @@
 
 import { useEffect } from "react";
+import "@animxyz/core";
+import { XyzTransition } from "@animxyz/react";
 const Block= ({link,pagename})=>{
     return(
         <>
@@ -44,6 +46,7 @@ const Navbar =({loggedIn}) =>{
             <Block link="/ask" pagename="Ask"/>
             <Block link="/provide" pagename="Provide"/></>): null} 
         </div>
+       
     );
 }
 

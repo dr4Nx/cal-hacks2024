@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Marquee from "react-fast-marquee";
+import "@animxyz/core";
+import { XyzTransition } from "@animxyz/react";
 import { getAuth } from "firebase/auth";
 import RequestCard from "../components/recyclerlistview/RequestCard"; // Import the card component
 import { Link } from "react-router-dom";
@@ -214,6 +216,7 @@ const TabProfile = ({ userId, userInfo, setUserInfo, requests, setLoading }) => 
   );
 };
 
+
 const TabRequests = ({ userId, requests }) => {
   return (
     <>
@@ -260,7 +263,6 @@ const Profile = () => {
   const [userInfo, setUserInfo] = useState({});
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
-
   const [totalRequests, setTotalRequests] = useState(0);
 
   useEffect(() => {

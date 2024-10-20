@@ -107,7 +107,7 @@ const Ask = () => {
           />
           <input
             type="submit"
-            className="bg-sage hover:bg-lightsage rounded my-3 p-2 text-white"
+            className="bg-sage hover:bg-darksage rounded my-3 p-2 text-white"
             value="Submit"
           />
         </form>

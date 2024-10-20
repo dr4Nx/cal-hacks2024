@@ -41,6 +41,7 @@ const RequestRecyclerView = () => {
   return (
     <div className="request-list-container" style={styles.container}>
       {/* Dropdown for sorting */}
+      <div className ="font-figtree mx-6 my-4">
       <div style={styles.dropdown}>
         <label htmlFor="sort">Sort by: </label>
         <select
@@ -53,6 +54,7 @@ const RequestRecyclerView = () => {
           <option value="alphabetical">Alphabetical A-Z</option>
           <option value="reverseAlphabetical">Reverse Alphabetical Z-A</option>
         </select>
+      </div>
       </div>
 
       {requests.length > 0 ? (

@@ -23,7 +23,8 @@ const Provide = () => {
 
   return (
     <div className="mt-[125px]">
-      <h1>Available Requests</h1>
+      <h1 className ="text-center text-[48px] font-poppins font-bold">Available Requests</h1>
+      <p className ="text-center text-[24px] font-figtree">Click on any post for more details and/or to accept the request</p>
       <RequestRecyclerView />
     </div>
   );

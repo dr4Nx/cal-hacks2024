@@ -12,26 +12,9 @@ const Request = () => {
   
   const requestId = useParams().id; 
   const [request, setRequest] = useState(null); // State to store the request data
-  const [username, setUsername] = useState(null);
   const [loading, setLoading] = useState(true); // State for loading state
   const [error, setError] = useState(null); // State for error handling
   const db = getFirestore();
-
-  const getUsername = async () => {
-    try {
-      const docRef = doc(db, 'users', user.getId); // Reference to the specific request document
-      const docSnap = await getDoc(docRef); // Get the document from Firestore
-  
-      if (docSnap.exists()) {
-        setUsername(docSnap.data().username); // If request exists, set it to state
-      } else {
-        setError('Request not found'); // If no such document, set an error message
-      }
-    } catch (err) {
-      console.log(err)
-      setError('Failed to fetch request'); // Handle any errors
-    }
-  }
   
 
   useEffect(() => {
@@ -69,9 +52,19 @@ const Request = () => {
   const handleBecomeTutor = async () => {
     if (user) {
       try {
-        const docRef = doc(db, 'requests', requestId);
-        await updateDoc(docRef, {
-          tutor_id: user.uid // Add the tutor_id field with the current user's ID
+        const docRef = doc(db, 'users', user.uid); // Reference to the specific request document
+        const docSnap = await getDoc(docRef); // Get the document from Firestore
+        let username;
+        if (docSnap.exists()) {
+          username = docSnap.data().username; // If request exists, set it to state
+        } else {
+          setError('Request not found'); // If no such document, set an error message
+        }
+        
+        const requestDocRef = doc(db, 'requests', requestId);
+        await updateDoc(requestDocRef, {
+          tutor_id: user.uid, // Add the tutor_id field with the current user's ID
+          tutor_username: username
         });
         toast.success('You are now the tutor for this request!');
         setRequest((prevRequest) => ({
@@ -80,6 +73,7 @@ const Request = () => {
           tutor_username: username // Update the local state as well
         }));
       } catch (err) {
+        console.log(err);
         toast.error('Failed to assign yourself as a tutor');
       }
     } else {
@@ -97,10 +91,11 @@ const Request = () => {
           <h2>Request ID: {requestId}</h2>
           <p><strong>Title:</strong> {request.topic}</p>
           <p><strong>Description:</strong> {request.description}</p>
-          <p><strong>Posted by:</strong> {request.student_id}</p>
+          <p><strong>Posted by:</strong> {request.student_username}</p>
+          <p><strong>Status:</strong> {request.complete ? "Complete" : "Incomplete"}</p>
           <p><strong>Created at:</strong> {request.date_created.toDate().toString()}</p>
           {request.tutor_id ? (
-            <p><strong>Tutor:</strong> {request.tutor_id}</p>
+            <p><strong>Tutor:</strong> {request.tutor_username ? request.tutor_username : "unassigned"}</p>
           ) : (
             user && user.uid !== request.student_id && ( // Only show the button if the current user is not the request poster
               <button onClick={handleBecomeTutor} className="btn-tutor">Become Tutor</button>

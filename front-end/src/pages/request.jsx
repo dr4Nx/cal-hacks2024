@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { getFirestore, doc, getDoc } from 'firebase/firestore';
+import { getFirestore, doc, getDoc, updateDoc } from 'firebase/firestore';
 import { useParams, useNavigate } from 'react-router-dom' 
 import { getAuth } from 'firebase/auth'
 import { toast } from 'react-toastify'
@@ -8,6 +8,32 @@ import Spinner from '../components/Spinner'
 const Request = () => {
   const auth = getAuth();
   const navigate = useNavigate();
+  const user = auth.currentUser;
+  
+  const requestId = useParams().id; 
+  const [request, setRequest] = useState(null); // State to store the request data
+  const [username, setUsername] = useState(null);
+  const [loading, setLoading] = useState(true); // State for loading state
+  const [error, setError] = useState(null); // State for error handling
+  const db = getFirestore();
+
+  const getUsername = async () => {
+    try {
+      const docRef = doc(db, 'users', user.getId); // Reference to the specific request document
+      const docSnap = await getDoc(docRef); // Get the document from Firestore
+  
+      if (docSnap.exists()) {
+        setUsername(docSnap.data().username); // If request exists, set it to state
+      } else {
+        setError('Request not found'); // If no such document, set an error message
+      }
+    } catch (err) {
+      console.log(err)
+      setError('Failed to fetch request'); // Handle any errors
+    }
+  }
+  
+
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (!user) {
@@ -18,12 +44,6 @@ const Request = () => {
 
     return () => unsubscribe();
   }, [auth, navigate]);
-
-  const requestId = useParams().id; 
-  const [request, setRequest] = useState(null); // State to store the request data
-  const [loading, setLoading] = useState(true); // State for loading state
-  const [error, setError] = useState(null); // State for error handling
-  const db = getFirestore();
 
   useEffect(() => {
     const fetchRequest = async () => {
@@ -46,6 +66,27 @@ const Request = () => {
     fetchRequest();
   }, [db, requestId]); // Fetch the request whenever the requestId changes
 
+  const handleBecomeTutor = async () => {
+    if (user) {
+      try {
+        const docRef = doc(db, 'requests', requestId);
+        await updateDoc(docRef, {
+          tutor_id: user.uid // Add the tutor_id field with the current user's ID
+        });
+        toast.success('You are now the tutor for this request!');
+        setRequest((prevRequest) => ({
+          ...prevRequest,
+          tutor_id: user.uid,
+          tutor_username: username // Update the local state as well
+        }));
+      } catch (err) {
+        toast.error('Failed to assign yourself as a tutor');
+      }
+    } else {
+      toast.error('You need to be logged in to become a tutor');
+    }
+  };
+
   if (loading) return <Spinner loading={loading} />;
   if (error) return <div>{error}</div>;
 
@@ -58,6 +99,11 @@ const Request = () => {
           <p><strong>Description:</strong> {request.description}</p>
           <p><strong>Posted by:</strong> {request.student_id}</p>
           <p><strong>Created at:</strong> {request.date_created.toDate().toString()}</p>
+          {request.tutor_id ? (
+            <p><strong>Tutor:</strong> {request.tutor_id}</p>
+          ) : (
+            <button onClick={handleBecomeTutor} className="btn-tutor">Become Tutor</button>
+          )}
         </div>
       ) : (
         <div>No request data available</div>
